@@ -1,0 +1,12 @@
+.DS_Store
+*.pyc
+.vscode/*
+.idea/*
+*.sqlite3
+.cache/
+*.DS_Store
+*.log
+*.log.*
+/static/uploads/*
+/app/*/migrations/*
+!/app/*/migrations/__init__.py

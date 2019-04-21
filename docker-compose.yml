@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  mysql_docker:
+    image: mysql:5.7
+    container_name: mysql_container
+    command: mysqld --user=root
+    volumes:
+      - mysqlData:/var/lib/mysql
+      - ~/dump:/dump
+      - djangoscaffold.cnf:/etc/mysql/conf.d/djangoscaffold.cnf
+    environment:
+      - MYSQL_DATABASE=django_scaffold
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+  app:
+    build:
+      context: .
+    #    image: recruitment-campaign-management:latest
+    volumes:
+      - .:/app
+      # - logData:/app/log
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=mysql_docker
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - DB_NAME=django_scaffold
+      - DB_PORT=3306
+      - DJANGO_MANAGEPY_MIGRATE=on
+    depends_on:
+      - mysql_docker
+volumes:
+  mysqlData:
+  djangoscaffold.cnf:
