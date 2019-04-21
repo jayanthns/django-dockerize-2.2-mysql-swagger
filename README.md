@@ -15,9 +15,7 @@ VS Code, Docker, Python, Django, Django Restframework, MySQL
 ## Getting started
 
 #### Create virtual environment
-```
-python3 -m venv env
-```
+```python3 -m venv env```
 
 #### Activate the environment
 ```source env/bin/activate```
